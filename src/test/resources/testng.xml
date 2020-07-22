@@ -10,9 +10,9 @@
                 <methods>
                     <exclude name="productsCurrencyAndHeadCurrencyTest"/>
                     <include name="searchedForCountTest"/>
-                    <exclude name="currencyOfProductsAtSearchPageTest"/>
-                    <exclude name="productSortingTest"/>
-                    <exclude name="discountTest"/>
+                    <include name="currencyOfProductsAtSearchPageTest"/>
+                    <include name="productSortingTest"/>
+                    <include name="discountTest"/>
                 </methods>
             </class>
         </classes>

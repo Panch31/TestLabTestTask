@@ -15,9 +15,9 @@ public class TestBase {
     public DriverManager driverManager;
     protected WebDriver driver;
     private static WebDriverWait wait;
-    public HomePage homePage;
-    public SearchPage searchPage;
-    public SearchPanel searchPanel;
+//    public HomePage homePage;
+//    public SearchPage searchPage;
+//    public SearchPanel searchPanel;
 
     @BeforeMethod
     public void beforeMethod() {
@@ -32,8 +32,6 @@ public class TestBase {
         driverManager = DriverManagerFactory.getManager(DriverType.CHROME);
         driver = driverManager.getDriver();
         wait = new WebDriverWait(driver, 15);
-//        homePage = new HomePage(driver);
-//        searchPage = new SearchPage(driver);
     }
 
     public HomePage goToLink(){
@@ -45,17 +43,9 @@ public class TestBase {
         return new SearchPanel(driver);
     }
 
-    public SearchPage searchByWord1(String word){
-        getSearchPanel().searchByWord(word);
+    public SearchPage searchPageRefresh(){
         return new SearchPage(driver);
     }
-
-//    public SearchPage findByWord(HomePage homePage, String searchedWord){
-//        homePage.searchByWord(searchedWord);
-//        return new SearchPage(driver);
-//    }
-
-
 
     @AfterMethod
         public void afterMethod() {
