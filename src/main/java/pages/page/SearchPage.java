@@ -1,17 +1,16 @@
-package pages;
+package pages.page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-public class SearchPage extends Page {
+public class SearchPage extends BasePage {
 
     public SearchPage(WebDriver driver) {
         super(driver);

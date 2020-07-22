@@ -1,18 +1,20 @@
-package pages;
+package pages.page;
 
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.panel.SearchPanel;
 
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-public class HomePage extends Page {
+public class HomePage extends BasePage {
+
+    public SearchPanel searchPanel;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -64,10 +66,10 @@ public class HomePage extends Page {
         usdCurrency.click();
     }
 
-    public void searchByWord(String searchedText){
-        log.info("search by word");
-        searchField.sendKeys(searchedText);
-        searchField.sendKeys(Keys.ENTER);
-    }
+//    public void searchByWord(String searchedText){
+//        log.info("search by word");
+//        searchField.sendKeys(searchedText);
+//        searchField.sendKeys(Keys.ENTER);
+//    }
 
 }

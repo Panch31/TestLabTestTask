@@ -1,18 +1,12 @@
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
-import pages.HomePage;
-import pages.SearchPage;
+import pages.page.HomePage;
+import pages.page.SearchPage;
+import pages.panel.SearchPanel;
 import util.*;
 //import util.TestListener;
 
-import java.io.File;
-import java.util.concurrent.TimeUnit;
 
 //@Listeners(util.TestListener.class)
 public class TestBase {
@@ -22,6 +16,7 @@ public class TestBase {
     private static WebDriverWait wait;
     public HomePage homePage;
     public SearchPage searchPage;
+    public SearchPanel searchPanel;
 
     @BeforeMethod
     public void beforeMethod() {
@@ -45,25 +40,32 @@ public class TestBase {
         return new HomePage(driver);
     }
 
-    public SearchPage findByWord(HomePage homePage, String searchedWord){
-        homePage.searchByWord(searchedWord);
+    public SearchPage searchByWord1(String word){
+        searchPanel.searchByWord(word);
         return new SearchPage(driver);
     }
 
+//    public SearchPage findByWord(HomePage homePage, String searchedWord){
+//        homePage.searchByWord(searchedWord);
+//        return new SearchPage(driver);
+//    }
+
+
+
     @AfterMethod
-    public void afterMethod() {
+        public void afterMethod() {
         System.out.println("afterMethod");
     }
 
     @AfterClass
-    public void afterClass() {
+        public void afterClass() {
         System.out.println("afterClass");
     }
 
     @AfterSuite
-    public void afterSuite() {
-        driverManager.quitDriver();
-        System.out.println("afterSuite");
-    }
+        public void afterSuite() {
+            driverManager.quitDriver();
+            System.out.println("afterSuite");
+        }
 
 }

@@ -1,25 +1,18 @@
-package pages;
+package pages.page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import util.PropertyLoader;
+import pages.BasePageObject;
+import pages.panel.SearchPanel;
 
-import java.io.File;
-import java.util.concurrent.TimeUnit;
-
-public class Page extends BasePageObject {
+public class BasePage extends BasePageObject {
 
     @FindBy(xpath = "//input[@name = 's']")
     private WebElement searchPanel;
 
-    public Page(WebDriver driver) {
+    public BasePage(WebDriver driver) {
         super(driver);
     }
 
@@ -28,8 +21,8 @@ public class Page extends BasePageObject {
         waitForElementToAppear(searchPanel);
     }
 
-    public MainSelectMenuPanel getMainSelectMenuPanel() {
-        return new MainSelectMenuPanel(getDriver());
+    public SearchPanel getSearchPanel() {
+        return new SearchPanel(getDriver());
     }
 
     public void waitToBeClickable(WebElement element){

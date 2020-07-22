@@ -1,8 +1,7 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.HomePage;
-import pages.SearchPage;
-import util.Url;
+import pages.page.HomePage;
+import pages.page.SearchPage;
 
 
 import java.util.List;
@@ -29,7 +28,9 @@ public class PrestashopTest extends TestBase {
         HomePage homePage = goToLink();
         homePage.clickOnCurrencyChangeButton();
         homePage.clickOnUsdCurrency();
-        SearchPage searchPage = findByWord(homePage, "dress");
+        SearchPage searchPage = searchByWord1("dress");
+//        SearchPage searchPage = findByWord(homePage, "dress");
+//        SearchPage searchPage = searchPanel.searchByWord("dress");
 //        homePage.searchByWord("dress");
         String[] searchedForField = searchPage.getTextAndIntFromSearchedForField();
         String number = searchedForField[1].replace(" ", "").replace(".", "");
