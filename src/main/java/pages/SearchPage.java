@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 public class SearchPage extends Page {
 
     public SearchPage(WebDriver driver) {
+        super(driver);
         PageFactory.initElements(driver, this);
         this.driver = driver;
         wait = new WebDriverWait(driver, 10);

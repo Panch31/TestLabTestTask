@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 public class HomePage extends Page {
 
     public HomePage(WebDriver driver) {
+        super(driver);
         PageFactory.initElements(driver, this);
         this.driver = driver;
         wait = new WebDriverWait(driver, 10);
