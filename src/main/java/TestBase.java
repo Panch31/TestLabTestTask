@@ -8,8 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 import pages.HomePage;
 import pages.SearchPage;
-import util.PropertyLoader;
-import util.Url;
+import util.*;
 //import util.TestListener;
 
 import java.io.File;
@@ -18,7 +17,8 @@ import java.util.concurrent.TimeUnit;
 //@Listeners(util.TestListener.class)
 public class TestBase {
 
-    private static WebDriver driver;
+    public DriverManager driverManager;
+    protected WebDriver driver;
     private static WebDriverWait wait;
     public HomePage homePage;
     public SearchPage searchPage;
@@ -33,16 +33,8 @@ public class TestBase {
 
     @BeforeSuite
     public void beforeSuite() {
-        File chromeDriver = new File(PropertyLoader.loadProperty("chrome.driver.path"));
-        ChromeDriverService driverService = new ChromeDriverService.Builder()
-                .usingDriverExecutable(chromeDriver)
-                .usingAnyFreePort()
-                .build();
-        ChromeOptions chromeOptions = new ChromeOptions()
-                .addArguments("--start-maximized");
-        driver = new ChromeDriver(driverService, chromeOptions);
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
+        driverManager = DriverManagerFactory.getManager(DriverType.CHROME);
+        driver = driverManager.getDriver();
         wait = new WebDriverWait(driver, 15);
 //        homePage = new HomePage(driver);
 //        searchPage = new SearchPage(driver);
@@ -70,7 +62,7 @@ public class TestBase {
 
     @AfterSuite
     public void afterSuite() {
-        driver.quit();
+        driverManager.quitDriver();
         System.out.println("afterSuite");
     }
 
