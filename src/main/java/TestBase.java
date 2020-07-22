@@ -1,6 +1,7 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
+import pages.page.BasePage;
 import pages.page.HomePage;
 import pages.page.SearchPage;
 import pages.panel.SearchPanel;
@@ -40,8 +41,12 @@ public class TestBase {
         return new HomePage(driver);
     }
 
+    public SearchPanel getSearchPanel(){
+        return new SearchPanel(driver);
+    }
+
     public SearchPage searchByWord1(String word){
-        searchPanel.searchByWord(word);
+        getSearchPanel().searchByWord(word);
         return new SearchPage(driver);
     }
 
