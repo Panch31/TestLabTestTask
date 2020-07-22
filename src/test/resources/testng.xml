@@ -8,11 +8,11 @@
         <classes>
             <class name="PrestashopTest">
                 <methods>
-                    <include name="productsCurrencyAndHeadCurrencyTest"/>
-                    <exclude name="searchedForCountTest"/>
-                    <exclude name="currencyOfProductsAtSearchPageTest"/>
-                    <exclude name="productSortingTest"/>
-                    <exclude name="discountTest"/>
+                    <exclude name="productsCurrencyAndHeadCurrencyTest"/>
+                    <include name="searchedForCountTest"/>
+                    <include name="currencyOfProductsAtSearchPageTest"/>
+                    <include name="productSortingTest"/>
+                    <include name="discountTest"/>
                 </methods>
             </class>
         </classes>

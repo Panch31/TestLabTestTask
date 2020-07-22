@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 public class TestBase {
 
     private static WebDriver driver;
-    private WebDriverWait wait;
+    private static WebDriverWait wait;
     public HomePage homePage;
     public SearchPage searchPage;
 
@@ -44,7 +44,7 @@ public class TestBase {
         driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, 15);
         homePage = new HomePage(driver);
-//        searchPage = new SearchPage(driver);
+        searchPage = new SearchPage(driver);
     }
 
     public static WebDriver getWebDriver(){

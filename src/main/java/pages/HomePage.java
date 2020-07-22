@@ -12,10 +12,7 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-public class HomePage {
-
-    private WebDriver driver;
-    private WebDriverWait wait;
+public class HomePage extends Page {
 
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -46,7 +43,7 @@ public class HomePage {
 
     public List getCurrencyProductList(){
         log.info("get product price currency list");
-//        waitToBeVisible(productsPriceCurrencyList.get(1));
+        waitToBeVisible(productsPriceCurrencyList.get(1));
         return productsPriceCurrencyList.stream().map(p -> p.getText()).collect(Collectors.toList());
     }
 
@@ -62,7 +59,7 @@ public class HomePage {
 
     public void clickOnUsdCurrency(){
         log.info("click on usd currency");
-//        waitToBeClickable(usdCurrency);
+        waitToBeClickable(usdCurrency);
         usdCurrency.click();
     }
 
@@ -71,21 +68,5 @@ public class HomePage {
         searchField.sendKeys(searchedText);
         searchField.sendKeys(Keys.ENTER);
     }
-
-
-//    public List getCurrencyProductsList(){
-//        List<WebElement> currencyProducts = homePage.getProductPriceCurrencyList();
-//        return productsPriceCurrencyList.stream().map(p -> p.getText()).collect(Collectors.toList());
-//    }
-
-
-//    public void setUsdAsCurrency(){
-//        homePage.clickOnCurrencyChangeButton();
-//        homePage.clickOnUsdCurrency();
-//    }
-//
-//    public void searchByWord(String searchWord){
-//        homePage.searchByWord(searchWord);
-//    }
 
 }

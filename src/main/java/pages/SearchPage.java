@@ -11,10 +11,7 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-public class SearchPage {
-
-    private WebDriver driver;
-    private WebDriverWait wait;
+public class SearchPage extends Page {
 
     public SearchPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -66,13 +63,13 @@ public class SearchPage {
 
     public void clickOnSortingButton(){
         log.info("click on the sorting field");
-//        waitToBeClickable(sortingButton);
+        waitToBeClickable(sortingButton);
         sortingButton.click();
     }
 
     public void clickOnFromHighToLowSortingField(){
         log.info("click on the sorting from High to Low price field");
-//        waitToBeVisible(fromHighToLowPriceField);
+        waitToBeVisible(fromHighToLowPriceField);
         fromHighToLowPriceField.click();
     }
 
@@ -133,21 +130,5 @@ public class SearchPage {
                 .collect(Collectors.toList());
         return priceWithDiscountDoubleList;
     }
-
-//    public List getProductRegularPriceList(){
-//        return productRegularPriceList;
-//    }
-//
-//    public List getDiscountOfSaleProduct(){
-//        return discountOfProductWithDiscount;
-//    }
-//
-//    public List getDiscountProductRegularPrice(){
-//        return productWithDiscountRegularPrice;
-//    }
-//
-//    public List getDiscountProductPriceWithDiscount(){
-//        return productWithDiscountPriceWithDiscount;
-//    }
 
 }
