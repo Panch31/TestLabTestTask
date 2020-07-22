@@ -9,6 +9,7 @@ import org.testng.annotations.*;
 import pages.HomePage;
 import pages.SearchPage;
 import util.PropertyLoader;
+import util.Url;
 //import util.TestListener;
 
 import java.io.File;
@@ -43,14 +44,19 @@ public class TestBase {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, 15);
-        homePage = new HomePage(driver);
-        searchPage = new SearchPage(driver);
+//        homePage = new HomePage(driver);
+//        searchPage = new SearchPage(driver);
     }
 
-    public static WebDriver getWebDriver(){
-        return driver;
+    public HomePage goToLink(){
+        driver.get(Url.HOMEPAGE.getLink());
+        return new HomePage(driver);
     }
 
+    public SearchPage findByWord(HomePage homePage, String searchedWord){
+        homePage.searchByWord(searchedWord);
+        return new SearchPage(driver);
+    }
 
     @AfterMethod
     public void afterMethod() {

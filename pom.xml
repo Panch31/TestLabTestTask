@@ -13,7 +13,7 @@
         <maven.compiler.target>1.7</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <suite.name>testng.xml</suite.name>
-        <chrome.driver.path>D:\download\driver\chromedriver.exe</chrome.driver.path>
+        <chrome.driver.path>src\main\resources\chromedriver.exe</chrome.driver.path>
     </properties>
 
     <dependencies>

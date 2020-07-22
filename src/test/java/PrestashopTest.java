@@ -1,5 +1,7 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.HomePage;
+import pages.SearchPage;
 import util.Url;
 
 
@@ -24,10 +26,11 @@ public class PrestashopTest extends TestBase {
     @Test
     public void searchedForCountTest(){
         log.info("go to prestashop site");
-        homePage.goToLink("http://prestashop-automation.qatestlab.com.ua/ru/");
+        HomePage homePage = goToLink();
         homePage.clickOnCurrencyChangeButton();
         homePage.clickOnUsdCurrency();
-        homePage.searchByWord("dress");
+        SearchPage searchPage = findByWord(homePage, "dress");
+//        homePage.searchByWord("dress");
         String[] searchedForField = searchPage.getTextAndIntFromSearchedForField();
         String number = searchedForField[1].replace(" ", "").replace(".", "");
         int searchedForCount = Integer.parseInt(number);

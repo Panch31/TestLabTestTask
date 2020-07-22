@@ -9,4 +9,8 @@ public enum Url {
     Url(String link){
         this.link = link;
     }
+
+    public String getLink(){
+        return  link;
+    }
 }
