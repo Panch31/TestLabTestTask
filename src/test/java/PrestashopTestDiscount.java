@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public class PrestashopTestDiscount extends TestBase {
 
-    private static final Logger log = Logger.getLogger(String.valueOf(PrestashopTestSorting.class));
+    private static final Logger log = Logger.getLogger(String.valueOf(PrestashopTestCurrency.class));
 
     @Test
     public void productSortingTest() {

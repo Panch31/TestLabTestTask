@@ -3,4 +3,5 @@
 out/
 /target/
 /.allure/
-/src/main/resources/chromedriver.exe
+allure-result/
+/src/main/resources/chromedriver
