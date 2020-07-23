@@ -49,83 +49,83 @@ public class SearchPage extends BasePage {
     @FindBy(xpath = "(//div[@class = 'dropdown-menu']/a)[last()]")
     private WebElement fromHighToLowPriceField;
 
-    public String getTextFromSearchedForField(){
+    public String getTextFromSearchedForField() {
         return searchedForProductCount.getText();
     }
 
-    public List getSearchedProductList(){
+    public List getSearchedProductList() {
         return searchedProductsList;
     }
 
-    public List getSearchedProductListPrice(){
+    public List getSearchedProductListPrice() {
         return searchedProductsListPrice;
     }
 
-    public void clickOnSortingButton(){
+    public void clickOnSortingButton() {
         log.info("click on the sorting field");
         waitToBeClickable(sortingButton);
         sortingButton.click();
     }
 
-    public void clickOnFromHighToLowSortingField(){
+    public void clickOnFromHighToLowSortingField() {
         log.info("click on the sorting from High to Low price field");
         waitToBeVisible(fromHighToLowPriceField);
         fromHighToLowPriceField.click();
     }
 
-    public String[] getTextAndIntFromSearchedForField(){
+    public String[] getTextAndIntFromSearchedForField() {
         String searchedFor = searchedForProductCount.getText();
         String[] searchedForString = searchedFor.split(":");
         return searchedForString;
     }
 
-    public int productResultCount(){
+    public int productResultCount() {
         int productResultCount = searchedProductsList.size();
         return productResultCount;
     }
 
-    public List<String> productResultListCurrency(){
+    public List<String> productResultListCurrency() {
         List<WebElement> resultListCurrency = searchedProductsListPrice;
         return resultListCurrency.stream().map(p -> p.getText()).collect(Collectors.toList());
     }
 
-    public void setSorting(){
+    public void setSorting() {
         clickOnSortingButton();
         clickOnFromHighToLowSortingField();
     }
 
-    public List<Double> pricesList(){
+    public List<Double> pricesList() {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         List<String> regularPriceStringList = productRegularPriceList.stream().map(p -> p.getText().
-                replace("," , ".").replaceAll("[^\\d.]", "")).collect(Collectors.toList());
+                replace(",", ".").replaceAll("[^\\d.]", "")).collect(Collectors.toList());
         List<Double> regularPriceDoubleList = regularPriceStringList.stream().map(p -> Double.parseDouble(p))
                 .collect(Collectors.toList());
         return regularPriceDoubleList;
     }
 
-    public List getDiscountOfSaleProduct(){
+    public List getDiscountOfSaleProduct() {
         List<String> discountOfSaleProductStringList = discountOfProductWithDiscount.stream().map(p -> p.getText().
-                replace("-","").replace("%","")).collect(Collectors.toList());
+                replace("-", "").replace("%", "")).collect(Collectors.toList());
         List<Double> discountOfSaleProductDoubleList = discountOfSaleProductStringList.stream().map(p -> Double.parseDouble(p))
                 .collect(Collectors.toList());
         return discountOfSaleProductDoubleList;
     }
 
-    public List getDiscountProductRegularPrice(){
+    public List getDiscountProductRegularPrice() {
         List<String> discountOfProductRegularPriceStringList = productWithDiscountRegularPrice.stream().map(p -> p.getText().
-                replace("," , ".").replaceAll("[^\\d.]", "")).collect(Collectors.toList());
+                replace(",", ".").replaceAll("[^\\d.]", "")).collect(Collectors.toList());
         List<Double> discountOfSaleProductDoubleList = discountOfProductRegularPriceStringList.
                 stream().map(p -> Double.parseDouble(p)).collect(Collectors.toList());
         return discountOfSaleProductDoubleList;
     }
 
-    public List getDiscountProductPriceWithDiscount(){
+    public List getDiscountProductPriceWithDiscount() {
         List<String> priceWithDiscountStringList = productWithDiscountPriceWithDiscount.stream().map(p -> p.getText().
-                replace("," , ".").replaceAll("[^\\d.]", "")).collect(Collectors.toList());
+                replace(",", ".").replaceAll("[^\\d.]", "")).collect(Collectors.toList());
         List<Double> priceWithDiscountDoubleList = priceWithDiscountStringList.stream().map(p -> Double.parseDouble(p))
                 .collect(Collectors.toList());
         return priceWithDiscountDoubleList;

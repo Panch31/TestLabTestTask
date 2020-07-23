@@ -1,11 +1,13 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
-import pages.page.BasePage;
 import pages.page.HomePage;
 import pages.page.SearchPage;
 import pages.panel.SearchPanel;
-import util.*;
+import util.DriverManager;
+import util.DriverManagerFactory;
+import util.DriverType;
+import util.Url;
 //import util.TestListener;
 
 
@@ -14,10 +16,7 @@ public class TestBase {
 
     public DriverManager driverManager;
     protected WebDriver driver;
-    private static WebDriverWait wait;
-//    public HomePage homePage;
-//    public SearchPage searchPage;
-//    public SearchPanel searchPanel;
+    protected WebDriverWait wait;
 
     @BeforeMethod
     public void beforeMethod() {
@@ -25,42 +24,41 @@ public class TestBase {
 
     @BeforeClass
     public void beforeClass() {
-    }
-
-    @BeforeSuite
-    public void beforeSuite() {
         driverManager = DriverManagerFactory.getManager(DriverType.CHROME);
         driver = driverManager.getDriver();
         wait = new WebDriverWait(driver, 15);
     }
 
-    public HomePage goToLink(){
+    @BeforeSuite
+    public void beforeSuite() {
+    }
+
+    public HomePage goToLink() {
         driver.get(Url.HOMEPAGE.getLink());
         return new HomePage(driver);
     }
 
-    public SearchPanel getSearchPanel(){
+    public SearchPanel getSearchPanel() {
         return new SearchPanel(driver);
     }
 
-    public SearchPage searchPageRefresh(){
+    public SearchPage getSearchPage() {
         return new SearchPage(driver);
     }
 
     @AfterMethod
-        public void afterMethod() {
+    public void afterMethod() {
         System.out.println("afterMethod");
     }
 
     @AfterClass
-        public void afterClass() {
+    public void afterClass() {
         System.out.println("afterClass");
+        driverManager.quitDriver();
     }
 
     @AfterSuite
-        public void afterSuite() {
-            driverManager.quitDriver();
-            System.out.println("afterSuite");
-        }
+    public void afterSuite() {
+    }
 
 }

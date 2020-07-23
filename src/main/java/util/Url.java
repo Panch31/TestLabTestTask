@@ -6,11 +6,11 @@ public enum Url {
 
     String link;
 
-    Url(String link){
+    Url(String link) {
         this.link = link;
     }
 
-    public String getLink(){
-        return  link;
+    public String getLink() {
+        return link;
     }
 }

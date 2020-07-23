@@ -1,6 +1,5 @@
 package pages.page;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -40,27 +39,27 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//input[@name = 's']")
     private WebElement searchField;
 
-    public void goToLink(String http){
+    public void goToLink(String http) {
         driver.get(http);
     }
 
-    public List getCurrencyProductList(){
+    public List getCurrencyProductList() {
         log.info("get product price currency list");
         waitToBeVisible(productsPriceCurrencyList.get(1));
         return productsPriceCurrencyList.stream().map(p -> p.getText()).collect(Collectors.toList());
     }
 
-    public String getTextFromCurrencyField(){
+    public String getTextFromCurrencyField() {
         log.info("get currency");
         return currencyField.getText();
     }
 
-    public void clickOnCurrencyChangeButton(){
+    public void clickOnCurrencyChangeButton() {
         log.info("click on currency button");
         currencyChangeButton.click();
     }
 
-    public void clickOnUsdCurrency(){
+    public void clickOnUsdCurrency() {
         log.info("click on usd currency");
         waitToBeClickable(usdCurrency);
         usdCurrency.click();

@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.BasePageObject;
-import pages.page.SearchPage;
 
 public class SearchPanel extends BasePageObject {
 
@@ -20,7 +19,7 @@ public class SearchPanel extends BasePageObject {
     @FindBy(xpath = "//input[@name = 's']")
     private WebElement searchField;
 
-    public void searchByWord(String word){
+    public void searchByWord(String word) {
         searchField.sendKeys(word);
         searchField.sendKeys(Keys.ENTER);
 //        return new SearchPage(driver);

@@ -1,10 +1,6 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
@@ -65,7 +61,7 @@ public class BasePageObject extends LoadableComponent<BasePageObject> {
     }
 
     public final WebElement waitForElementToAppearCustomWaitTime(By by, int waitTimeInSecond) {
-        for (int i = 0; i < 2; i++ )
+        for (int i = 0; i < 2; i++)
             try {
                 WebDriverWait wait = new WebDriverWait(driver, waitTimeInSecond / 2);
                 return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
@@ -78,9 +74,9 @@ public class BasePageObject extends LoadableComponent<BasePageObject> {
 
     protected final WebElement waitForElementToAppear(WebElement element) {
         final int countOfSearch = 4;
-        for(int i = 0; i < countOfSearch; i++) {
+        for (int i = 0; i < countOfSearch; i++) {
             try {
-                WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME_IN_SECONDS/countOfSearch);
+                WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME_IN_SECONDS / countOfSearch);
                 return wait.until(ExpectedConditions.visibilityOf(element));
             } catch (StaleElementReferenceException e) {
                 i++;

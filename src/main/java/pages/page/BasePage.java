@@ -25,11 +25,11 @@ public class BasePage extends BasePageObject {
         return new SearchPanel(getDriver());
     }
 
-    public void waitToBeClickable(WebElement element){
+    public void waitToBeClickable(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public void waitToBeVisible(WebElement element){
+    public void waitToBeVisible(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
