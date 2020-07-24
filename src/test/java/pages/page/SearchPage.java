@@ -12,15 +12,7 @@ import java.util.stream.Collectors;
 
 public class SearchPage extends BasePage {
 
-    public SearchPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
-        wait = new WebDriverWait(driver, 10);
-    }
-
     private static final Logger log = Logger.getLogger(String.valueOf(SearchPage.class));
-
 
     @FindBy(xpath = "//div[contains(@class, 'col-md-6')]/p")
     private WebElement searchedForProductCount;
@@ -49,28 +41,22 @@ public class SearchPage extends BasePage {
     @FindBy(xpath = "(//div[@class = 'dropdown-menu']/a)[last()]")
     private WebElement fromHighToLowPriceField;
 
-    public String getTextFromSearchedForField() {
-        return searchedForProductCount.getText();
+    public SearchPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+        this.driver = driver;
+        wait = new WebDriverWait(driver, 10);
     }
 
-    public List getSearchedProductList() {
-        return searchedProductsList;
-    }
-
-    public List getSearchedProductListPrice() {
-        return searchedProductsListPrice;
-    }
 
     public void clickOnSortingButton() {
         log.info("click on the sorting field");
-        waitToBeClickable(sortingButton);
-        sortingButton.click();
+        waitToBeClickable(sortingButton).click();
     }
 
     public void clickOnFromHighToLowSortingField() {
         log.info("click on the sorting from High to Low price field");
-        waitToBeVisible(fromHighToLowPriceField);
-        fromHighToLowPriceField.click();
+        waitToBeVisible(fromHighToLowPriceField).click();
     }
 
     public String[] getTextAndIntFromSearchedForField() {

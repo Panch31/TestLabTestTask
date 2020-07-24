@@ -1,7 +1,10 @@
+package tests;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.page.HomePage;
 import pages.page.SearchPage;
+import tests.PrestashopTestCurrency;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -14,12 +17,11 @@ public class PrestashopTestDiscount extends TestBase {
     public void productSortingTest() {
         log.info("3");
         HomePage homePage = goToLink();
-        getSearchPanel().searchByWord("dress");
-        SearchPage searchPage = getSearchPage();
+        SearchPage searchPage = getSearchPanel().searchByWord("dress");
         searchPage.setSorting();
         List<Double> pricesList = searchPage.pricesList();
-        for (int i = 0; i < searchPage.productResultCount(); i++) {
-            Assert.assertTrue(pricesList.get(i) >= pricesList.get(i++));
+        for (int i = 0; i < searchPage.productResultCount()-1; i++) {
+            Assert.assertTrue(pricesList.get(i) >= pricesList.get(i+1));
         }
         log.info("test that product are sorting passed");
     }

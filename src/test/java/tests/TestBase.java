@@ -1,3 +1,7 @@
+package tests;
+
+import enums.DriverType;
+import enums.Url;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
@@ -6,9 +10,6 @@ import pages.page.SearchPage;
 import pages.panel.SearchPanel;
 import util.DriverManager;
 import util.DriverManagerFactory;
-import util.DriverType;
-import util.Url;
-//import util.TestListener;
 
 
 //@Listeners(util.TestListener.class)
@@ -33,19 +34,6 @@ public class TestBase {
     public void beforeSuite() {
     }
 
-    public HomePage goToLink() {
-        driver.get(Url.HOMEPAGE.getLink());
-        return new HomePage(driver);
-    }
-
-    public SearchPanel getSearchPanel() {
-        return new SearchPanel(driver);
-    }
-
-    public SearchPage getSearchPage() {
-        return new SearchPage(driver);
-    }
-
     @AfterMethod
     public void afterMethod() {
         System.out.println("afterMethod");
@@ -60,5 +48,19 @@ public class TestBase {
     @AfterSuite
     public void afterSuite() {
     }
+
+    public HomePage goToLink() {
+        driver.get(Url.HOMEPAGE.getLink());
+        return new HomePage(driver);
+    }
+
+    public SearchPanel getSearchPanel() {
+        return new SearchPanel(driver);
+    }
+
+    public SearchPage getSearchPage() {
+        return new SearchPage(driver);
+    }
+
 
 }

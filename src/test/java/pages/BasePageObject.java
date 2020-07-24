@@ -7,14 +7,21 @@ import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.page.BasePage;
+import pages.page.HomePage;
 
-public class BasePageObject extends LoadableComponent<BasePageObject> {
+import java.util.logging.Logger;
+
+
+public abstract class BasePageObject extends LoadableComponent<BasePageObject> {
 
     private Integer WAIT_TIME_IN_SECONDS = 5;
 
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected ElementLocatorFactory rootFactory;
+
+    public final Logger log = Logger.getLogger(String.valueOf(BasePageObject.class));
 
     public BasePageObject(WebDriver driver) {
         init(driver);
@@ -94,6 +101,16 @@ public class BasePageObject extends LoadableComponent<BasePageObject> {
         } catch (InterruptedException e1) {
 
         }
+    }
+
+    public WebElement waitToBeClickable(WebElement element) {
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        return element;
+    }
+
+    public WebElement waitToBeVisible(WebElement element) {
+        wait.until(ExpectedConditions.visibilityOf(element));
+        return element;
     }
 
 

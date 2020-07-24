@@ -8,21 +8,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.panel.SearchPanel;
 
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class HomePage extends BasePage {
 
     public SearchPanel searchPanel;
-
-    public HomePage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
-        wait = new WebDriverWait(driver, 10);
-    }
-
-    private static final Logger log = Logger.getLogger(String.valueOf(HomePage.class));
 
     @FindBy(xpath = "(//span[contains(@class, 'expand-more')])[2]")
     private WebElement currencyField;
@@ -38,6 +28,13 @@ public class HomePage extends BasePage {
 
     @FindBy(xpath = "//input[@name = 's']")
     private WebElement searchField;
+
+    public HomePage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+        this.driver = driver;
+        wait = new WebDriverWait(driver, 10);
+    }
 
     public void goToLink(String http) {
         driver.get(http);
@@ -56,19 +53,12 @@ public class HomePage extends BasePage {
 
     public void clickOnCurrencyChangeButton() {
         log.info("click on currency button");
-        currencyChangeButton.click();
+        waitToBeClickable(currencyChangeButton).click();
     }
 
     public void clickOnUsdCurrency() {
         log.info("click on usd currency");
-        waitToBeClickable(usdCurrency);
-        usdCurrency.click();
+        waitToBeClickable(usdCurrency).click();
     }
-
-//    public void searchByWord(String searchedText){
-//        log.info("search by word");
-//        searchField.sendKeys(searchedText);
-//        searchField.sendKeys(Keys.ENTER);
-//    }
 
 }

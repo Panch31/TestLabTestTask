@@ -12,7 +12,9 @@
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <chrome.driver.path>src\\main\\resources\\chromedriver.exe</chrome.driver.path>
+        <chrome.driver.path>src\\test\\resources\\chromedriver.exe</chrome.driver.path>
+<!--        <chrome.driver.path>src\\test\\resources\\chromedriver.exe</chrome.driver.path>-->
+
     </properties>
 
     <dependencies>
@@ -41,7 +43,7 @@
     <build>
         <resources>
             <resource>
-                <directory>src/main/resources</directory>
+                <directory>src/test/resources</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>

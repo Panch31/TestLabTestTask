@@ -1,7 +1,10 @@
+package tests;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.page.HomePage;
 import pages.page.SearchPage;
+import pages.panel.SearchPanel;
 
 import java.util.logging.Logger;
 
@@ -22,6 +25,7 @@ public class PrestashopTestCurrency extends TestBase {
 
     @Test
     public void searchedForCountTest() {
+        System.out.println(System.getProperty("java.classpath"));
         log.info("1");
         log.info("go to prestashop site");
         HomePage homePage = goToLink();
@@ -40,8 +44,7 @@ public class PrestashopTestCurrency extends TestBase {
     @Test
     public void currencyOfProductsAtSearchPageTest() {
         log.info("2");
-        SearchPage searchPage = getSearchPage();
-        searchPage.productResultListCurrency().forEach(elem -> Assert.assertTrue(elem.contains("$")));
+        getSearchPanel().searchByWord("dress").productResultListCurrency().forEach(elem -> Assert.assertTrue(elem.contains("$")));
         log.info("test that product currency are the same that in head currency passed");
     }
 
