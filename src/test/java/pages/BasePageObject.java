@@ -7,8 +7,6 @@ import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.page.BasePage;
-import pages.page.HomePage;
 
 import java.util.logging.Logger;
 
@@ -17,7 +15,7 @@ public abstract class BasePageObject extends LoadableComponent<BasePageObject> {
 
     private Integer WAIT_TIME_IN_SECONDS = 5;
 
-    protected WebDriver driver;
+    public WebDriver driver;
     protected WebDriverWait wait;
     protected ElementLocatorFactory rootFactory;
 

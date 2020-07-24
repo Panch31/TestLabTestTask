@@ -31,8 +31,4 @@ public abstract class DriverManager {
         }
         return driver;
     }
-
-    public WebDriver getWebdriver(){
-        return driver;
-    }
 }

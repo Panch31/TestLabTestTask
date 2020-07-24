@@ -12,6 +12,16 @@ public class ChromeDriverManager extends DriverManager {
 
 
     private ChromeDriverService chService;
+    String path;
+
+    public String getDriverPath(){
+        try{
+            path = "src" + File.separator + "test" + File.separator + "resources" + File.separator + "chromedriver.exe";
+        } catch (NullPointerException e){
+            path = "src" + File.separator + "test" + File.separator + "resources" + File.separator + "chromedriver";
+        }
+        return path;
+    }
 
 
     @Override
@@ -19,7 +29,7 @@ public class ChromeDriverManager extends DriverManager {
         if (null == chService) {
             try {
                 chService = new ChromeDriverService.Builder()
-                        .usingDriverExecutable(new File("src\\test\\resources\\chromedriver.exe"))
+                        .usingDriverExecutable(new File (getDriverPath()))
                         .usingAnyFreePort()
                         .build();
                 chService.start();

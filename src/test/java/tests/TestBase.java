@@ -5,18 +5,18 @@ import enums.Url;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
+import pages.ListenersTestng;
 import pages.page.HomePage;
 import pages.page.SearchPage;
 import pages.panel.SearchPanel;
 import util.DriverManager;
 import util.DriverManagerFactory;
 
-
-//@Listeners(util.TestListener.class)
+@Listeners(ListenersTestng.class)
 public class TestBase {
 
     public DriverManager driverManager;
-    protected WebDriver driver;
+    public WebDriver driver;
     protected WebDriverWait wait;
 
     @BeforeMethod
@@ -60,6 +60,10 @@ public class TestBase {
 
     public SearchPage getSearchPage() {
         return new SearchPage(driver);
+    }
+
+    public WebDriver getDriver(){
+        return driver;
     }
 
 
