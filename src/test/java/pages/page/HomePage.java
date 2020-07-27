@@ -5,14 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.panel.SearchPanel;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class HomePage extends BasePage {
-
-    public SearchPanel searchPanel;
 
     @FindBy(xpath = "(//span[contains(@class, 'expand-more')])[2]")
     private WebElement currencyField;
@@ -31,9 +28,8 @@ public class HomePage extends BasePage {
 
     public HomePage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
-        wait = new WebDriverWait(driver, 10);
+//        this.driver = driver;
+//        wait = new WebDriverWait(driver, 10);
     }
 
     public void goToLink(String http) {
@@ -59,6 +55,10 @@ public class HomePage extends BasePage {
     public void clickOnUsdCurrency() {
         log.info("click on usd currency");
         waitToBeClickable(usdCurrency).click();
+    }
+
+    public WebElement getSearchField(){
+        return searchField;
     }
 
 }

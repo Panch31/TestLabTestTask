@@ -1,6 +1,9 @@
 package tests;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.page.HomePage;
 import pages.page.SearchPage;
@@ -10,7 +13,6 @@ import java.util.logging.Logger;
 
 public class PrestashopTestCurrency extends TestBase {
 
-    private static final Logger log = Logger.getLogger(String.valueOf(PrestashopTestCurrency.class));
 
 //    @Test
 //    public void productsCurrencyAndHeadCurrencyTest(){
@@ -23,16 +25,20 @@ public class PrestashopTestCurrency extends TestBase {
 //        log.info("products currency and head currency test passed successfully");
 //    }
 
-    @Test
+    @AfterMethod
+    public void after(){
+        SearchPanel searchPanel = getSearchPanel();
+        searchPanel.cleanSearchField();
+    }
+
+    @Test(priority = 1)
     public void searchedForCountTest() {
-        System.out.println(System.getProperty("java.classpath"));
         log.info("1");
         log.info("go to prestashop site");
         HomePage homePage = goToLink();
         homePage.clickOnCurrencyChangeButton();
         homePage.clickOnUsdCurrency();
-        getSearchPanel().searchByWord("dress");
-        SearchPage searchPage = getSearchPage();
+        SearchPage searchPage = getSearchPanel().searchByWord("dress");
         String[] searchedForField = searchPage.getTextAndIntFromSearchedForField();
         String number = searchedForField[1].replace(" ", "").replace(".", "");
         int searchedForCount = Integer.parseInt(number);
@@ -41,9 +47,10 @@ public class PrestashopTestCurrency extends TestBase {
         log.info("count of product that was searching by word test passed");
     }
 
-    @Test
+    @Test(priority = 2)
     public void currencyOfProductsAtSearchPageTest() {
         log.info("2");
+//        getSearchPanel().cleanSearchField();
         getSearchPanel().searchByWord("dress").productResultListCurrency().forEach(elem -> Assert.assertTrue(elem.contains("$")));
         log.info("test that product currency are the same that in head currency passed");
     }

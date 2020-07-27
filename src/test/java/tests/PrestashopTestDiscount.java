@@ -1,21 +1,26 @@
 package tests;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import pages.page.HomePage;
 import pages.page.SearchPage;
+import pages.panel.SearchPanel;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 public class PrestashopTestDiscount extends TestBase {
 
-    private static final Logger log = Logger.getLogger(String.valueOf(PrestashopTestCurrency.class));
+    @AfterMethod
+    public void after(){
+        SearchPanel searchPanel = getSearchPanel();
+        searchPanel.cleanSearchField();
+    }
 
     @Test
     public void productSortingTest() {
         log.info("3");
-        HomePage homePage = goToLink();
+//        goToLink();
         SearchPage searchPage = getSearchPanel().searchByWord("dress");
         searchPage.setSorting();
         List<Double> pricesList = searchPage.pricesList();
@@ -28,7 +33,7 @@ public class PrestashopTestDiscount extends TestBase {
     @Test
     public void discountTest() {
         log.info("4");
-        SearchPage searchPage = getSearchPage();
+        SearchPage searchPage = getSearchPanel().searchByWord("dress");
         List<Double> discountOfSaleProduct = searchPage.getDiscountOfSaleProduct();
         List<Double> regularPriceOfDiscountProduct = searchPage.getDiscountProductRegularPrice();
         List<Double> priceWithDiscount = searchPage.getDiscountProductPriceWithDiscount();

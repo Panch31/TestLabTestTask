@@ -26,6 +26,8 @@ public class SearchPanel extends BasePageObject {
         return new SearchPage(driver);
     }
 
+    public void cleanSearchField(){
+        searchField.clear();
+    }
+
 }
-
-
