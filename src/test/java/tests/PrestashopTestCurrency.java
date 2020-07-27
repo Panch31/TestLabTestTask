@@ -45,7 +45,6 @@ public class PrestashopTestCurrency extends TestBase {
         String number = searchedForField[1].replace(" ", "").replace(".", "");
         int searchedForCount = Integer.parseInt(number);
         Assert.assertEquals(searchedForField[0], "Товаров");
-//        Assert.assertEquals(searchedForField[0], "alooooooo");
         Assert.assertEquals(searchedForCount, searchPage.productResultCount());
         log.info("count of product that was searching by word test passed");
     }
@@ -53,7 +52,6 @@ public class PrestashopTestCurrency extends TestBase {
     @Test(priority = 2)
     public void currencyOfProductsAtSearchPageTest() {
         log.info("2");
-//        getSearchPanel().cleanSearchField();
         getSearchPanel().searchByWord("dress").productResultListCurrency().forEach(elem -> Assert.assertTrue(elem.contains("$")));
         log.info("test that product currency are the same that in head currency passed");
     }
