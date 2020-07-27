@@ -7,7 +7,6 @@ import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import sun.jvm.hotspot.debugger.Page;
 
 import java.util.logging.Logger;
 
@@ -23,14 +22,9 @@ public abstract class BasePageObject extends LoadableComponent<BasePageObject> {
     public final Logger log = Logger.getLogger(String.valueOf(BasePageObject.class));
 
     public BasePageObject(WebDriver driver) {
-//        init(driver);
-//        rootFactory = new DefaultElementLocatorFactory(driver);
-//        initialize();
-//        PageFactory.initElements(driver, this);
-//        initWait(wait);
         this.driver = getDriver();
-        wait = new WebDriverWait(driver,10);
-        PageFactory.initElements(driver,this);
+        wait = new WebDriverWait(driver, 10);
+        PageFactory.initElements(driver, this);
     }
 
     public BasePageObject(WebDriver driver, By root) {
@@ -62,17 +56,11 @@ public abstract class BasePageObject extends LoadableComponent<BasePageObject> {
         return driver;
     }
 
-    protected WebDriverWait getWaitDriver() {
-        return wait;
-    }
 
     private void init(WebDriver driver) {
         this.driver = driver;
     }
 
-    private void initWait(WebDriverWait wait) {
-        this.wait = wait;
-    }
 
     private void initElementsUnderRoot(WebElement root) {
         rootFactory = new DefaultElementLocatorFactory(root);
@@ -124,7 +112,6 @@ public abstract class BasePageObject extends LoadableComponent<BasePageObject> {
         wait.until(ExpectedConditions.visibilityOf(element));
         return element;
     }
-
 
 
 }
