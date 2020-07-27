@@ -7,13 +7,13 @@
                 <methods>
                     <exclude name="productsCurrencyAndHeadCurrencyTest"/>
                     <include name="searchedForCountTest"/>
-                    <exclude name="currencyOfProductsAtSearchPageTest"/>
+                    <include name="currencyOfProductsAtSearchPageTest"/>
                 </methods>
             </class>
             <class name="tests.PrestashopTestDiscount">
                 <methods>
-                    <exclude name="productSortingTest"/>
-                    <exclude name="discountTest"/>
+                    <include name="productSortingTest"/>
+                    <include name="discountTest"/>
                 </methods>
             </class>
         </classes>
