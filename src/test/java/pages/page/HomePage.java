@@ -28,8 +28,6 @@ public class HomePage extends BasePage {
 
     public HomePage(WebDriver driver) {
         super(driver);
-//        this.driver = driver;
-//        wait = new WebDriverWait(driver, 10);
     }
 
     public void goToLink(String http) {

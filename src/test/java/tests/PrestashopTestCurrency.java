@@ -2,19 +2,16 @@ package tests;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.page.HomePage;
 import pages.page.SearchPage;
 import pages.panel.SearchPanel;
 
-import java.util.logging.Logger;
-
 public class PrestashopTestCurrency extends TestBase {
 
 
-//    @Test
+    //    @Test
 //    public void productsCurrencyAndHeadCurrencyTest(){
 //        log.info("go to prestashop site");
 //        homePage.goToLink("http://prestashop-automation.qatestlab.com.ua/ru/");
@@ -25,8 +22,13 @@ public class PrestashopTestCurrency extends TestBase {
 //        log.info("products currency and head currency test passed successfully");
 //    }
 
+    @BeforeMethod
+    public void beforeMethod() {
+        goToLink();
+    }
+
     @AfterMethod
-    public void after(){
+    public void after() {
         SearchPanel searchPanel = getSearchPanel();
         searchPanel.cleanSearchField();
     }
@@ -42,7 +44,8 @@ public class PrestashopTestCurrency extends TestBase {
         String[] searchedForField = searchPage.getTextAndIntFromSearchedForField();
         String number = searchedForField[1].replace(" ", "").replace(".", "");
         int searchedForCount = Integer.parseInt(number);
-        Assert.assertEquals(searchedForField[0], "Товаров");
+//        Assert.assertEquals(searchedForField[0], "Товаров");
+        Assert.assertEquals(searchedForField[0], "alooooooo");
         Assert.assertEquals(searchedForCount, searchPage.productResultCount());
         log.info("count of product that was searching by word test passed");
     }

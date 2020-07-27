@@ -7,10 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import tests.TestBase;
 
 public class ListenersTestng implements ITestListener {
-
-    WebDriver driver = null;
 
     @Override
     public void onTestStart(ITestResult result) {
@@ -25,9 +24,7 @@ public class ListenersTestng implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        ITestContext context = result.getTestContext();
-        WebDriver driver = (WebDriver) context.getAttribute("driver");
-        makeScreenshot();
+        makeScreenshot(result);
         System.out.println("Started");
         if (result.getThrowable() != null) {
             result.getThrowable().printStackTrace();
@@ -35,7 +32,9 @@ public class ListenersTestng implements ITestListener {
     }
 
     @Attachment(value = "Page screenshot", type = "image/png")
-    private byte[] makeScreenshot() {
+    private byte[] makeScreenshot(ITestResult result) {
+        Object currentClass = result.getInstance();
+        WebDriver driver = ((TestBase) currentClass).getDriver();
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 

@@ -23,11 +23,6 @@ public class TestBase {
     protected WebDriverWait wait;
     public final Logger log = Logger.getLogger(String.valueOf(TestBase.class));
 
-    @BeforeMethod
-    public void beforeMethod() {
-        goToLink();
-    }
-
     @BeforeClass
     public void beforeClass() {
         driverManager = DriverManagerFactory.getManager(DriverType.CHROME);

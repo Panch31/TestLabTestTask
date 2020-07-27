@@ -43,9 +43,6 @@ public class SearchPage extends BasePage {
 
     public SearchPage(WebDriver driver) {
         super(driver);
-//        PageFactory.initElements(driver, this);
-//        this.driver = driver;
-//        wait = new WebDriverWait(driver, 10);
     }
 
 
