@@ -44,8 +44,7 @@ public class PrestashopTestCurrency extends TestBase {
         String[] searchedForField = searchPage.getTextAndIntFromSearchedForField();
         String number = searchedForField[1].replace(" ", "").replace(".", "");
         int searchedForCount = Integer.parseInt(number);
-//        Assert.assertEquals(searchedForField[0], "Товаров");
-        Assert.assertEquals(searchedForField[0], "aloooo");
+        Assert.assertEquals(searchedForField[0], "Товаров");
         Assert.assertEquals(searchedForCount, searchPage.productResultCount());
         log.info("count of product that was searching by word test passed");
     }
