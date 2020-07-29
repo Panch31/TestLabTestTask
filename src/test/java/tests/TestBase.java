@@ -7,8 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 import pages.BasePageObject;
 import pages.ListenersTestng;
-import pages.page.HomePage;
-import pages.page.SearchPage;
+import pages.page.*;
 import pages.panel.SearchPanel;
 import util.DriverManager;
 import util.DriverManagerFactory;
@@ -25,6 +24,7 @@ public class TestBase {
 
     @BeforeClass
     public void beforeClass() {
+        log.info("DRIVER CLASS STARTED");
         driverManager = DriverManagerFactory.getManager(DriverType.CHROME);
         driver = driverManager.getDriver();
         wait = new WebDriverWait(driver, 15);
@@ -41,7 +41,7 @@ public class TestBase {
 
     @AfterClass
     public void afterClass() {
-        System.out.println("afterClass");
+        System.out.println("afterClass QUITEDRIVER");
         driverManager.quitDriver();
     }
 

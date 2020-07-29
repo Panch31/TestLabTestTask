@@ -6,14 +6,19 @@
             <class name="tests.PrestashopTestCurrency">
                 <methods>
                     <exclude name="productsCurrencyAndHeadCurrencyTest"/>
-                    <include name="searchedForCountTest"/>
-                    <include name="currencyOfProductsAtSearchPageTest"/>
+                    <exclude name="searchedForCountTest"/>
+                    <exclude name="currencyOfProductsAtSearchPageTest"/>
                 </methods>
             </class>
             <class name="tests.PrestashopTestDiscount">
                 <methods>
-                    <include name="productSortingTest"/>
-                    <include name="discountTest"/>
+                    <exclude name="productSortingTest"/>
+                    <exclude name="discountTest"/>
+                </methods>
+            </class>
+            <class name="tests.PrestaShopLoginTest">
+                <methods>
+                    <include name="passwordChangeTest"/>
                 </methods>
             </class>
         </classes>

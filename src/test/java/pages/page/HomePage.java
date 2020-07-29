@@ -3,8 +3,6 @@ package pages.page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,6 +23,12 @@ public class HomePage extends BasePage {
 
     @FindBy(xpath = "//input[@name = 's']")
     private WebElement searchField;
+
+    @FindBy(xpath = "(//span[@class = 'hidden-sm-down'])[1]")
+    private WebElement loginButton;
+
+    @FindBy(xpath = "(//span[@class='hidden-sm-down'])[1]")
+    private WebElement userButton;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -55,7 +59,18 @@ public class HomePage extends BasePage {
         waitToBeClickable(usdCurrency).click();
     }
 
-    public WebElement getSearchField(){
+    public void clickOnLoginButton() {
+        log.info("click on loginButton");
+        waitToBeClickable(loginButton).click();
+    }
+
+    public UserPage clickOnUserButton() {
+        log.info("click on userButton");
+        waitToBeClickable(userButton).click();
+        return new UserPage(driver);
+    }
+
+    public WebElement getSearchField() {
         return searchField;
     }
 
