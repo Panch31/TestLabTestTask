@@ -9,7 +9,10 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import pages.BasePageObject;
 import pages.page.*;
+import pages.panel.LoginPanel;
+import pages.panel.RegistrationPanel;
 import util.DriverManager;
 import util.DriverManagerFactory;
 import util.PasswordGenerator;
@@ -19,75 +22,84 @@ import java.util.List;
 
 public class PrestaShopLoginTest extends TestBase {
 
-    List<String> passwordList = new ArrayList<>();
-    List<String> emailList = new ArrayList<>();
+    private List<String> passwordList = new ArrayList<>();
+    private List<String> emailList = new ArrayList<>();
 
     @BeforeTest
     public void registrationAsUser() {
         try {
-            DriverManager driverManager = DriverManagerFactory.getManager(DriverType.CHROME);
-            WebDriver driver = driverManager.getDriver();
-            WebDriverWait wait = new WebDriverWait(driver, 15);
+            driverManager = DriverManagerFactory.getManager(DriverType.CHROME);
+            log.info("1");
+            driver = driverManager.getDriver();
+            log.info("2");
+            wait = new WebDriverWait(driver, 15);
+            log.info("3");
             log.info("driver beforeMethodStarted started");
             String pass = PasswordGenerator.generateRandomPassword(10);
-            HomePage homePage = new HomePage(driver);
-            driver.get(Url.HOMEPAGE.getLink());
-            homePage.clickOnLoginButton();
-            LoginPage loginPage = new LoginPage(driver);
-            RegistrationPage registrationPage = loginPage.clickOnRegistrationButton(driver);
-            registrationPage.sendKeysToFirstNameField("Yevhenii");
+            log.info("1");
+            HomePage homePage = goToLink();
+            log.info("2");
+            LoginPage loginPage = homePage.clickOnLoginButton();
+            log.info("3");
+            LoginPanel loginPanel = loginPage.getLoginPanel();
+            RegistrationPage registrationPage = loginPanel.clickOnRegistrationButton();
+            RegistrationPanel registrationPanel = registrationPage.getRegistrationPanel();
+            registrationPanel.sendKeysToFirstNameField("Yevhenii");
             log.info("Yevhenii");
-            registrationPage.sendKeysToLastNameField("Panchenko");
+            registrationPanel.sendKeysToLastNameField("Panchenko");
             log.info("Panchenko");
-            registrationPage.sendKeysToPasswordField(pass);
+            registrationPanel.sendKeysToPasswordField(pass);
             log.info("pass send");
-            String email = registrationPage.sendKeysToEmailField();
-            log.info("Yemail send");
+            String email = registrationPanel.sendKeysToEmailField();
+            log.info("email send");
             passwordList.add(pass);
             log.info("pass put to list");
             emailList.add(email);
             log.info("email put to list");
-            registrationPage.clickOnSaveButton();
+            registrationPanel.clickOnSaveButton();
             log.info("save");
             log.info("driver out");
-            driver.quit();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } finally {
             driver.quit();
         }
     }
 
     @Test
-    public void passwordChangeTest(){
+    public void passwordChangeTest() {
         HomePage homePage = goToLink();
-        homePage.clickOnLoginButton();
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.sendKeysToEmailField(emailList.get(0));
-        loginPage.sendKeysToPasswordField(passwordList.get(0));
+        LoginPage loginPage = homePage.clickOnLoginButton();
+        LoginPanel loginPanel = loginPage.getLoginPanel();
+        loginPanel.sendKeysToEmailField(emailList.get(0));
+        loginPanel.sendKeysToPasswordField(passwordList.get(0));
         log.info("click on sign in button");
-        loginPage.clickOnSignInButton();
+        loginPanel.clickOnSignInButton();
         log.info(emailList.get(0));
         log.info(passwordList.get(0));
-//        UserPage userPage = homePage.clickOnUserButton();
-        UserPage userPage = new UserPage(driver);
-        UserInformationPage userInformationPage = new UserInformationPage(driver);
-        userPage.clickOnUserInformationButton();
+        UserPage userPage = homePage.clickOnUserButton();
+        UserInformationPage userInformationPage = userPage.clickOnUserInformationButton();
         String newPass = PasswordGenerator.generateRandomPassword(10);
-        userInformationPage.changePassword(passwordList.get(0),newPass);
+        userInformationPage.changePassword(passwordList.get(0), newPass);
         userInformationPage.clickSaveButton();
         userInformationPage.clickOnLogOutButton();
-        loginPage.sendKeysToEmailField(emailList.get(0));
-        loginPage.sendKeysToPasswordField(passwordList.get(0));
-        loginPage.clickOnSignInButton();
-        Assert.assertEquals(loginPage.getMassageFromError(),"Ошибка авторизации.");
-        loginPage.sendKeysToPasswordField(newPass);
-        loginPage.clickOnSignInButton();
-        Assert.assertEquals(userInformationPage.getTextFromHeader(),"Ваша персональная информация");
-
+        loginPanel = loginPage.getLoginPanel();
+        log.info("1");
+        loginPanel.sendKeysToEmailField(emailList.get(0));
+        log.info("2");
+        loginPanel.sendKeysToPasswordField(passwordList.get(0));
+        log.info("3");
+        loginPanel.clickOnSignInButton();
+        log.info("4");
+        loginPanel = loginPage.getLoginPanel();
+        Assert.assertEquals(loginPanel.getMassageFromError(), "Ошибка авторизации.");
+        log.info("first check with invalid password passed");
+        loginPanel.sendKeysToPasswordField(newPass);
+        loginPanel.clickOnSignInButton();
+        Assert.assertEquals(userInformationPage.getTextFromHeader(), "Ваша персональная информация");
+        log.info("second check with valid password passed");
     }
 
     @AfterTest
-    public void cleanLists(){
+    public void cleanLists() {
         emailList.clear();
         passwordList.clear();
     }

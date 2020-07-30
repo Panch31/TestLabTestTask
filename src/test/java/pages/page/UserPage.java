@@ -15,8 +15,9 @@ public class UserPage extends BasePage {
         super(driver);
     }
 
-    public void clickOnUserInformationButton() {
+    public UserInformationPage clickOnUserInformationButton() {
         log.info("click on userInformationButton");
         waitToBeClickable(userInformationButton).click();
+        return new UserInformationPage(driver);
     }
 }

@@ -3,6 +3,7 @@ package pages.page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.panel.LoginPanel;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -59,9 +60,10 @@ public class HomePage extends BasePage {
         waitToBeClickable(usdCurrency).click();
     }
 
-    public void clickOnLoginButton() {
+    public LoginPage clickOnLoginButton() {
         log.info("click on loginButton");
         waitToBeClickable(loginButton).click();
+        return new LoginPage(driver);
     }
 
     public UserPage clickOnUserButton() {

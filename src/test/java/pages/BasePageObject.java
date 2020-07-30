@@ -22,18 +22,22 @@ public abstract class BasePageObject extends LoadableComponent<BasePageObject> {
     public final Logger log = Logger.getLogger(String.valueOf(BasePageObject.class));
 
     public BasePageObject(WebDriver driver) {
-        this.driver = getDriver();
+        this.driver = driver;
         wait = new WebDriverWait(driver, 10);
         PageFactory.initElements(driver, this);
     }
 
     public BasePageObject(WebDriver driver, By root) {
-        init(driver);
+        this.driver = driver;
+        wait = new WebDriverWait(driver, 10);
+        PageFactory.initElements(driver, this);
         initElementsUnderRoot(waitForElementToAppearCustomWaitTime(root, WAIT_TIME_IN_SECONDS * 5));
     }
 
     public BasePageObject(WebDriver driver, WebElement root) {
-        init(driver);
+        this.driver = driver;
+        wait = new WebDriverWait(driver, 10);
+        PageFactory.initElements(driver, this);
         initElementsUnderRoot(root);
     }
 
