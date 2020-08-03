@@ -1,19 +1,14 @@
 package tests;
 
 import enums.DriverType;
-import enums.Url;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.BasePageObject;
 import pages.page.*;
 import pages.panel.LoginPanel;
 import pages.panel.RegistrationPanel;
-import util.DriverManager;
 import util.DriverManagerFactory;
 import util.PasswordGenerator;
 
@@ -25,44 +20,41 @@ public class PrestaShopLoginTest extends TestBase {
     private List<String> passwordList = new ArrayList<>();
     private List<String> emailList = new ArrayList<>();
 
-//    @BeforeTest
-//    public void registrationAsUser() {
-//        try {
-//            driverManager = DriverManagerFactory.getManager(DriverType.CHROME);
-//            log.info("driver started");
-//            driver = driverManager.getDriver();
-//            log.info("webdriver started");
-//            wait = new WebDriverWait(driver, 15);
-//            String pass = PasswordGenerator.generateRandomPassword(10);
-//            log.info("go to home page");
-//            HomePage homePage = goToLink();
-//            log.info("login page open");
-//            LoginPage loginPage = homePage.clickOnLoginButton();
-//            log.info("login panel init");
-//            LoginPanel loginPanel = loginPage.getLoginPanel();
-//            log.info("registration page init");
-//            RegistrationPage registrationPage = loginPanel.clickOnRegistrationButton();
-//            log.info("registration panel panel init");
-//            RegistrationPanel registrationPanel = registrationPage.getRegistrationPanel();
-//            registrationPanel.sendKeysToFirstNameField("Yevhenii");
-//            log.info("Yevhenii");
-//            registrationPanel.sendKeysToLastNameField("Panchenko");
-//            log.info("Panchenko");
-//            registrationPanel.sendKeysToPasswordField(pass);
-//            log.info("pass send");
-//            String email = registrationPanel.sendKeysToEmailField();
-//            log.info("email send");
-//            passwordList.add(pass);
-//            log.info("pass put to list");
-//            emailList.add(email);
-//            log.info("email put to list");
-//            registrationPanel.clickOnSaveButton();
-//            log.info("save");
-//            log.info("driver out");
-//        } finally {
-//            driver.quit();
-//        }
-//    }
+    @BeforeClass
+    public void registrationAsUser() {
+        driverManager = DriverManagerFactory.getManager(DriverType.CHROME);
+        log.info("driver started");
+        driver = driverManager.getDriver();
+        log.info("webdriver started");
+        wait = new WebDriverWait(driver, 15);
+        String pass = PasswordGenerator.generateRandomPassword(10);
+        log.info("go to home page");
+        HomePage homePage = goToLink();
+        log.info("login page open");
+        LoginPage loginPage = homePage.clickOnLoginButton();
+        log.info("login panel init");
+        LoginPanel loginPanel = loginPage.getLoginPanel();
+        log.info("registration page init");
+        RegistrationPage registrationPage = loginPanel.clickOnRegistrationButton();
+        log.info("registration panel panel init");
+        RegistrationPanel registrationPanel = registrationPage.getRegistrationPanel();
+        registrationPanel.sendKeysToFirstNameField("Yevhenii");
+        log.info("Yevhenii");
+        registrationPanel.sendKeysToLastNameField("Panchenko");
+        log.info("Panchenko");
+        registrationPanel.sendKeysToPasswordField(pass);
+        log.info("pass send");
+        String email = registrationPanel.sendKeysToEmailField();
+        log.info("email send");
+        passwordList.add(pass);
+        log.info("pass put to list");
+        emailList.add(email);
+        log.info("email put to list");
+        registrationPanel.clickOnSaveButton();
+        log.info("save");
+        log.info("driver out");
+        afterStepsDriverClose();
+    }
 
     @Test
     public void passwordChangeTest() {

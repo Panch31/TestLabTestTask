@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
-<suite name="testng" parallel="classes" thread-count="2">
+<suite name="testng" parallel="methods" thread-count="2">
     <test name="TestLab-task">
         <classes>
             <class name="tests.PrestashopTestCurrency">

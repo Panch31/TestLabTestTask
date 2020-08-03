@@ -22,8 +22,8 @@ public class TestBase {
     protected WebDriverWait wait;
     public final Logger log = Logger.getLogger(String.valueOf(TestBase.class));
 
-    @BeforeClass
-    public void beforeClass() {
+    @BeforeMethod
+    public void beforeMethod() {
         log.info("DRIVER CLASS STARTED");
         driverManager = DriverManagerFactory.getManager(DriverType.CHROME);
         driver = driverManager.getDriver();
@@ -64,6 +64,11 @@ public class TestBase {
 
     public WebDriver getDriver(){
         return driver;
+    }
+
+    public void afterStepsDriverClose(){
+        if(driver == null){}
+        else driver.quit();
     }
 
 
