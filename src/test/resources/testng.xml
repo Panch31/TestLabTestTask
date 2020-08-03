@@ -18,12 +18,12 @@
             </class>
             <class name="tests.PrestaShopLoginTest">
                 <methods>
-                    <exclude name="passwordChangeTest"/>
+                    <include name="passwordChangeTest"/>
                 </methods>
             </class>
             <class name="tests.ProductCardsTest">
                 <methods>
-                    <include name="testname"/>
+                    <exclude name="testname"/>
                 </methods>
             </class>
         </classes>

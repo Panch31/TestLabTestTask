@@ -2,8 +2,16 @@ package util;
 
 import org.openqa.selenium.WebDriver;
 
-public abstract class DriverManager {
+public abstract class DriverManager implements AutoCloseable{
 
+    @Override
+    public void close(){
+        if (null != driver) {
+            driver.quit();
+            driver = null;
+            System.out.println("Driver closed after error in Before Step");
+        }
+    }
 
     protected WebDriver driver;
 

@@ -5,9 +5,9 @@ import enums.Url;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
-import pages.BasePageObject;
 import pages.ListenersTestng;
-import pages.page.*;
+import pages.page.HomePage;
+import pages.page.SearchPage;
 import pages.panel.SearchPanel;
 import util.DriverManager;
 import util.DriverManagerFactory;
@@ -36,13 +36,13 @@ public class TestBase {
 
     @AfterMethod
     public void afterMethod() {
-        System.out.println("afterMethod");
+        System.out.println("afterTestBase QUITEDRIVER");
+        driverManager.quitDriver();
     }
 
     @AfterClass
     public void afterClass() {
-        System.out.println("afterClass QUITEDRIVER");
-        driverManager.quitDriver();
+
     }
 
     @AfterSuite
@@ -62,14 +62,8 @@ public class TestBase {
         return new SearchPage(driver);
     }
 
-    public WebDriver getDriver(){
+    public WebDriver getDriver() {
         return driver;
     }
-
-    public void afterStepsDriverClose(){
-        if(driver == null){}
-        else driver.quit();
-    }
-
 
 }
