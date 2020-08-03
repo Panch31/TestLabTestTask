@@ -21,7 +21,7 @@ public class SearchPanel extends BasePageObject {
     private WebElement searchField;
 
     public SearchPage searchByWord(String word) {
-        searchField.sendKeys(word);
+        waitToBeClickable(searchField).sendKeys(word);
         searchField.sendKeys(Keys.ENTER);
         return new SearchPage(driver);
     }

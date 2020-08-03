@@ -3,8 +3,7 @@ package pages.page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.panel.ProductCardsPanel;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -113,5 +112,6 @@ public class SearchPage extends BasePage {
                 .collect(Collectors.toList());
         return priceWithDiscountDoubleList;
     }
+
 
 }

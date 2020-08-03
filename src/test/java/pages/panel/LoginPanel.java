@@ -31,30 +31,25 @@ public class LoginPanel extends BasePageObject {
     private WebElement errorField;
 
     public RegistrationPage clickOnRegistrationButton() {
-        waitToBeClickable(registrationButton);
-        registrationButton.click();
+        waitToBeClickable(registrationButton).click();
         return new RegistrationPage(driver);
     }
 
     public void sendKeysToEmailField(String email) {
-        waitToBeClickable(emailField);
-        emailField.sendKeys(email);
+        waitToBeClickable(emailField).sendKeys(email);
     }
 
     public void sendKeysToPasswordField(String pass) {
-        waitToBeClickable(passwordField);
-        passwordField.sendKeys(pass);
+        waitToBeClickable(passwordField).sendKeys(pass);
     }
 
     public void clickOnSignInButton() {
-        waitToBeClickable(signInButton);
-        signInButton.click();
+        waitToBeClickable(signInButton).click();
     }
 
     public String getMassageFromError() {
         log.info("get Error message");
-        waitToBeVisible(errorField);
-        return errorField.getText();
+        return waitToBeVisible(errorField).getText();
     }
 
 }
